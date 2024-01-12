@@ -27,7 +27,7 @@
   
         }
 
-        //Player make choice
+        /*Player make choice
         function getPlayerChoice(){
             const playerChoice= ["rock", "scissors", "paper"];
       
@@ -40,6 +40,7 @@
             
             console.log(playerChoice);
         }
+        */
 
         /*play a five time round of the game*/
         let playerScore;
@@ -55,32 +56,20 @@
                     if (computerSelection===playerSelection){
                         return "It's a tie";
                     }
-                    else if (computerSelection ==="paper"){
-                        if (playerSelection==="rock"){
-                            return "Computer win! Paper beats Rock";
-                        }
-                        else if(playerSelection==="scissors"){
-                            return "Player win! Scissors beats Paper"
-                        }
+                    if ((computerSelection ==="paper" && playerSelection==="rock") ||
+                    (computerSelection ==="scissors" && playerSelection==="paper") ||
+                    (computerSelection ==="rock" && playerSelection==="scissors")){
+                        return "You lost! Computer win";
                     }
-                    else if (computerSelection ==="rock"){
-                        if (playerSelection==="paper"){
-                            return "Player win! Paper beats Rock";
-                        }
-                        else if(playerSelection==="scissors"){
-                            return "Computer win! Rock beats Scissors"
-                        }
+   
+                    if ((computerSelection ==="paper" && playerSelection==="scissors") ||
+                    (computerSelection ==="scissors" && playerSelection==="rock") ||
+                    (computerSelection ==="rock" && playerSelection==="paper")){
+                        return "You win! Computer lost";
                     }
-                    else if (computerSelection ==="scissors"){
-                        if (playerSelection==="paper"){
-                            return "Computer win! Scissors beats Paper";
-                        }
-                        else if(playerSelection==="rock"){
-                            return "Player win! Rock beats Scissors"
-                        }
-                    }  
+ 
                 }
-                const playerSelection = getPlayerChoice();
+                const playerSelection = ["rock", "scissors", "paper"];
                 const computerSelection = getComputerChoice();
                 console.log(playRound(playerSelection, computerSelection));
                 playRound();
