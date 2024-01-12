@@ -23,26 +23,31 @@
             else {
                 return "Input not valid";
             }
+            console.log(ComputerChoice)
   
         }
 
         //Player make choice
-        function getPlayerChoice(playerInput){
-            const playerChoice = ["rock, scissors, paper"];
-            if (playerChoice==="rock" || "scissors" || "paper"){
-                return playerChoice;
+        function getPlayerChoice(){
+            const playerChoice= ["rock", "scissors", "paper"];
+      
+            if (playerChoice === "rock"|| "scissors"|| "paper"){
+                return "";
             }
-            else {
-                return "This hand don't exist";
+            else{
+                return "This hand don't exist!"
             }
+            
+            console.log(playerChoice);
         }
 
         /*play a five time round of the game*/
-        let userScore;
+        let playerScore;
         let computerScore;
         let score;
         let play = prompt("write your choice");
         function game(){
+            
             for (let i=0 ; i<5 ; i++){
                 alert(i);
 
@@ -68,20 +73,24 @@
                     }
                     else if (computerSelection ==="scissors"){
                         if (playerSelection==="paper"){
-                            return "computer win! Scissors beats Paper";
+                            return "Computer win! Scissors beats Paper";
                         }
                         else if(playerSelection==="rock"){
-                            return "Player win! Paper beats Rock"
+                            return "Player win! Rock beats Scissors"
                         }
                     }  
                 }
                 const playerSelection = getPlayerChoice();
                 const computerSelection = getComputerChoice();
                 console.log(playRound(playerSelection, computerSelection));
+                playRound();
+                
+                
 
             }    
         }
-        console.log(game());
+        game();
+        
 
 
 
