@@ -14,78 +14,62 @@
             if (computerChoice=== 0){
                 return "rock";  
             }
-            else if (computerChoice=== 1){
+            if (computerChoice=== 1){
                 return "scissors";   
             }
-            else if (computerChoice=== 2){
+            if (computerChoice=== 2){
                 return "paper";
             }
-            else {
-                return "Input not valid";
-            }
-            console.log(ComputerChoice)
-  
+            console.log(computerChoice);
         }
 
         /*Player make choice
         function getPlayerChoice(){
             const playerChoice= ["rock", "scissors", "paper"];
-      
-            if (playerChoice === "rock"|| "scissors"|| "paper"){
-                return "";
+            switch (playerChoice){
+                case "rock":
+                    console.log("rock");
+                    break;
+                case "scissors":
+                    console.log("scissors");
+                    break;
+                case "paper":
+                    console.log("paper");
+                    break;
+                default:
+                console.log("This hand don't exist");
             }
-            else{
-                return "This hand don't exist!"
-            }
-            
             console.log(playerChoice);
         }
-        */
-
-        /*play a five time round of the game*/
-        let playerScore;
-        let computerScore;
-        let score;
-        let play = prompt("write your choice");
-        function game(){
-            
-            for (let i=0 ; i<5 ; i++){
-                alert(i);
-
-                function playRound(playerSelection, computerSelection) {
-                    if (computerSelection===playerSelection){
-                        return "It's a tie";
-                    }
-                    if ((computerSelection ==="paper" && playerSelection==="rock") ||
-                    (computerSelection ==="scissors" && playerSelection==="paper") ||
-                    (computerSelection ==="rock" && playerSelection==="scissors")){
-                        return "You lost! Computer win";
-                    }
-   
-                    if ((computerSelection ==="paper" && playerSelection==="scissors") ||
-                    (computerSelection ==="scissors" && playerSelection==="rock") ||
-                    (computerSelection ==="rock" && playerSelection==="paper")){
-                        return "You win! Computer lost";
-                    }
- 
-                }
-                const playerSelection = ["rock", "scissors", "paper"];
-                const computerSelection = getComputerChoice();
-                console.log(playRound(playerSelection, computerSelection));
-                playRound();
-                
-                
-
-            }    
-        }
-        game();
         
 
+        /*play a five time round of the game*/
+        let playerScore=0;
+        let computerScore=0;
+        let play = prompt("write your choice");
 
+        function playRound(playerSelection, computerSelection) {
 
-
- 
-
+            if (computerSelection===playerSelection){
+                    return "It's a tie";
+            }
+            else if ((computerSelection ==="paper" && playerSelection[0]) ||
+                (computerSelection ==="scissors" && playerSelection[2]) ||
+                (computerSelection ==="rock" && playerSelection[1])){
+                    return "You lost! Computer win";
+            }
+            else if ((computerSelection ==="paper" && playerSelection[1]) ||
+                (computerSelection ==="scissors" && playerSelection[0]) ||
+                (computerSelection ==="rock" && playerSelection[2])){
+                    return "You win! Computer lost";
+                }
+            else{
+                return "not defined";
+            }
+        }
+        const playerSelection = ["rock", "scissors", "paper"];
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
 
     </script>
 </body>
