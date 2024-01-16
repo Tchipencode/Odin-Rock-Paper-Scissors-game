@@ -1,68 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock-Paper-Scissors</title>
-</head>
-<body>
-
-    <script>
-        /*Computer randomly selection*/
-        function getComputerChoice(){
-            const computerChoice = Math.floor(Math.random()*3);
-            if (computerChoice=== 0){
-                return "rock";  
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rock-Paper-Scissors</title>
+    </head>
+    <body>
+    
+        <script>
+            
+            /*play five round game*/
+            function game(){
+                const roundNumber=5;
+                do {console.log(playRound(playerSelection, computerSelection));
+                } while (round<=5){
+                    alert(round);
+                    //console.log(`round:${round++}`);
+                }
+                /*for (let round=1; round<=5; round++){
+                    const play= playRound(computerSelection, playerSelection);
+                    console.log(`round:${round++}`);
+                }
+                */
+    
             }
-            if (computerChoice=== 1){
-                return "scissors";   
+    
+            /*Computer randomly selection*/
+            function getComputerChoice(){
+                const computerChoice = Math.floor(Math.random()*3);
+                if (computerChoice=== 0){
+                    return "rock";  
+                }
+                if (computerChoice=== 1){
+                    return "scissors";   
+                }
+                if (computerChoice=== 2){
+                    return "paper";
+                }
+                return getComputerChoice();
             }
-            if (computerChoice=== 2){
-                return "paper";
+    
+            /*Player choice selection*/
+            function getPlayerChoice(){
+                const playerChoice= prompt("write your choice").toLowerCase();
+                if (playerChoice==="rock"|| 
+                    playerChoice==="scissors"|| 
+                    playerChoice==="paper"){
+                    return playerChoice;
+                }
+                else{
+                    if (playerChoice!=="rock"|| 
+                    playerChoice!=="scissors"|| 
+                    playerChoice!=="paper"){
+                        alert("This hand don't exist");
+                    }           
+                }
+                return getPlayerChoice();  
             }
-            return getComputerChoice();
-        }
-
-        /*Player choice selection*/
-        function getPlayerChoice(){
-            const playerChoice= prompt("write your choice").toLowerCase();
-            if (playerChoice==="rock"|| 
-                playerChoice==="scissors"|| 
-                playerChoice==="paper"){
-                return playerChoice;
+    
+            let roundResult="";
+            let playerScore=score();
+            let computerScore=score();
+            function score(roundResult){
+                if (roundResult==="It's a tie"){
+                    return{playerScore:1, computerScore:1}      
+                }
+                if (roundResult==="You lost! Computer win"){
+                    return{playerScore:0, computerScore:1}  
+                }
+                if (roundResult==="You win! Computer lost"){
+                    return{playerScore:1, computerScore:0}  
+                } 
+                
             }
-            else{
-                return prompt("This hand don't exist");
+    
+            /*play a single round of the game*/
+            function playRound(playerSelection, computerSelection) {
+    
+                if (computerSelection===playerSelection){
+                        return {
+                            computerSelection,
+                            playerSelection,
+                            computerScore:score,
+                            playerScore:score,
+                            roundResult: "It's a tie"
+                        };
+                }
+                else if ((computerSelection ==="paper" && playerSelection==="rock") ||
+                    (computerSelection ==="scissors" && playerSelection==="paper") ||
+                    (computerSelection ==="rock" && playerSelection==="scissors")){
+                        return {
+                            computerSelection,
+                            playerSelection,
+                            computerScore:score,
+                            playerScore:score,
+                            roundResult: "You lost! Computer win"
+                        };
+                }
+                else if ((computerSelection ==="paper" && playerSelection==="scissors") ||
+                    (computerSelection ==="scissors" && playerSelection==="rock") ||
+                    (computerSelection ==="rock" && playerSelection==="paper")){
+                        return {
+                            computerSelection,
+                            playerSelection,
+                            computerScore:score,
+                            playerScore:score,
+                            roundResult: "You win! Computer lost"
+                        };
+                }
+                else{
+                    return "player hand is not correct";
+                }   
             }
-            return getPlayerChoice();  
-        }
-
-        /*play a single round of the game*/
-        let playerScore=0;
-        let computerScore=0;
-        function playRound(playerSelection, computerSelection) {
-            if (computerSelection===playerSelection){
-                    return "It's a tie";
-            }
-            else if ((computerSelection ==="paper" && playerSelection==="rock") ||
-                (computerSelection ==="scissors" && playerSelection==="paper") ||
-                (computerSelection ==="rock" && playerSelection==="scissors")){
-                    return "You lost! Computer win";
-            }
-            else if ((computerSelection ==="paper" && playerSelection==="scissors") ||
-                (computerSelection ==="scissors" && playerSelection==="rock") ||
-                (computerSelection ==="rock" && playerSelection==="paper")){
-                    return "You win! Computer lost";
-            }
-            else{
-                return "player hand is not correct";
-            }   
-        }
-        const playerSelection = getPlayerChoice();
-        const computerSelection = getComputerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-
-    </script>
-</body>
+            const playerSelection = getPlayerChoice();
+            const computerSelection = getComputerChoice();
+            console.log(playRound(playerSelection, computerSelection));
+            
+    
+    
+    
+        </script>
+    </body>
 
 </html>
