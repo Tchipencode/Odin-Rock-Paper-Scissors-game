@@ -10,7 +10,7 @@
         <script>
             
             /*Computer randomly selection*/
-            function getComputerChoice(){
+            const getComputerChoice=function(){
                 const computerChoice = Math.floor(Math.random()*3);
                 if (computerChoice=== 0){
                     return "rock";  
@@ -21,9 +21,9 @@
                 if (computerChoice=== 2){
                     return "paper";
                 }                            
-            }          
+            };          
     
-            /*Player choice selection*/
+            /*Player choice selection
             function getPlayerChoice(){
                 const playerChoice= prompt("write your choice").toLowerCase();
 
@@ -39,37 +39,45 @@
                         alert("This hand don't exist");
                     }           
                 }
-            }
+            }*/
     
             /*play a single round of the game*/
-            function playRound(playerSelection, computerSelection) {
-   
+            const playRound= function(playerSelection, computerSelection) {
+                let result;
+  
                 if (computerSelection===playerSelection){
-                        return "It's a tie";                                                                                    
+                        result= "It's a tie";                                                                                    
                 }
                 else if ((computerSelection ==="paper" && playerSelection==="rock") ||
                     (computerSelection ==="scissors" && playerSelection==="paper") ||
                     (computerSelection ==="rock" && playerSelection==="scissors")){
-                        return "You lost! Computer win";                                                                      
+                        result= "You lost! Computer win";                                                                      
                 }
                 else if ((computerSelection ==="paper" && playerSelection==="scissors") ||
                     (computerSelection ==="scissors" && playerSelection==="rock") ||
                     (computerSelection ==="rock" && playerSelection==="paper")){
-                        return "You win! Computer lost";                                                                     
+                        result= "You win! Computer lost";                                                                     
                 }
                 else{
-                    return "player hand is not correct";
-                }                          
-            }
+                    result= "player hand is not correct";
+                }
+                score(result);
+                return result;
+            };
+         
+            //computerSelection=getComputerChoice();
+            //playerSelection=getPlayerChoice();
+            //console.log(playRound(playerSelection,computerSelection));
+           
 
-            /*play the best of five round game*/
+            
+            /*play the best of five round game
             let playerScore=0;
             let computerScore=0;
             function playGame(){
     
                 for(let round=0; round<=4; round++){
-                    playerSelection=getPlayerChoice();
-                    computerSelection=getComputerChoice();
+                    
                     const result=playRound(playerSelection, computerSelection);
                     if(result==="It's a tie"){
                         playerScore;
@@ -92,7 +100,95 @@
                     return "Computer win the game"
                 }             
             }
-            console.log(playGame()+";"+"playerScore="+playerScore+";"+"computerScore="+computerScore);
+            console.log(playGame()+";"+"playerScore="+playerScore+";"+"computerScore="+computerScore);*/
+
+            /*create three buttons for each choice*/
+            const container=document.createElement("div");
+            const btn1=document.createElement("button");
+            const btn2=document.createElement("button");
+            const btn3=document.createElement("button");
+
+            container.appendChild(btn1);
+            container.appendChild(btn2);
+            container.appendChild(btn3);
+
+            btn1.textContent="Rock";
+            btn2.textContent="Paper";
+            btn3.textContent="Scissors";
+
+            const body=document.querySelector("body");
+            body.appendChild(container);
+
+            const divResult=document.createElement("div");
+            const para=document.createElement("p");
+         
+            body.appendChild(divResult);
+            divResult.appendChild(para);
+
+            para.textContent="";
+
+            const playGame= function(playerSelection){
+                
+                computerSelection=getComputerChoice();  
+                //const result=playRound(playerSelection, computerSelection);       
+                playRound(playerSelection, computerSelection);
+               
+
+                //para.textContent=playerScore+ ";"+computerScore+";"+result;
+                
+                //console.log(playerSelection+";"+computerSelection+";"+result);
+
+            };
+
+            /*Add event listener to the buttons to call playRound function*/
+            
+            btn1.addEventListener("click", ()=>{
+                playGame("rock");
+                
+               
+            });
+            btn2.addEventListener("click", ()=>{
+                playGame("paper");
+
+            });
+            btn3.addEventListener("click", ()=>{
+                playGame("scissors");
+
+            });
+
+            let playerScore=0;
+            let computerScore=0;
+            const score=function(result){
+                let winner;
+                //const result=playRound(playerSelection, computerSelection);
+                if(result==="It's a tie"){
+                    playerScore;
+                    computerScore;
+                    //return result;
+                }
+                else if(result==="You lost! Computer win"){
+                    computerScore++;
+                    //return result;
+                }
+                else if(result==="You win! Computer lost"){
+                    playerScore++;
+                    //return result;
+                }
+   
+                if(playerScore>=5 || computerScore>=5){
+                    
+                    if (playerScore>computerScore){
+                        winner= "Player win the game";
+                    }
+                    else{
+                        winner="Computer win the game";
+                    }  
+                }
+                 
+                para.textContent= playerScore+ ";"+computerScore+";"+result;          
+            };
+           
+
       
         </script>
     </body>
