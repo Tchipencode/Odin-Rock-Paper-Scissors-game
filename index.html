@@ -23,24 +23,6 @@
                 }                            
             };          
     
-            /*Player choice selection
-            function getPlayerChoice(){
-                const playerChoice= prompt("write your choice").toLowerCase();
-
-                if (playerChoice==="rock"|| 
-                    playerChoice==="scissors"|| 
-                    playerChoice==="paper"){
-                    return playerChoice;
-                }
-                else{
-                    if (playerChoice!=="rock"|| 
-                    playerChoice!=="scissors"|| 
-                    playerChoice!=="paper"){
-                        alert("This hand don't exist");
-                    }           
-                }
-            }*/
-    
             /*play a single round of the game*/
             const playRound= function(playerSelection, computerSelection) {
                 let result;
@@ -63,47 +45,9 @@
                 }
                 score(result);
                 
-                //return result;
             };
-         
-            //computerSelection=getComputerChoice();
-            //playerSelection=getPlayerChoice();
-            //console.log(playRound(playerSelection,computerSelection));
-           
 
-            
-            /*play the best of five round game
-            let playerScore=0;
-            let computerScore=0;
-            function playGame(){
-    
-                for(let round=0; round<=4; round++){
-                    
-                    const result=playRound(playerSelection, computerSelection);
-                    if(result==="It's a tie"){
-                        playerScore;
-                        computerScore;
-                    }
-                    else if(result==="You lost! Computer win"){
-                        computerScore++;
-                    }
-                    else if(result==="You win! Computer lost"){
-                        playerScore++;
-                    }
-                }
-                if(playerScore===computerScore){
-                    return "No winner, play again";
-                }
-                else if(playerScore>computerScore){
-                    return "Player win the game";
-                }
-                else{
-                    return "Computer win the game"
-                }             
-            }
-            console.log(playGame()+";"+"playerScore="+playerScore+";"+"computerScore="+computerScore);*/
-
-            /*create three buttons for each choice*/
+            /*create HTML elements*/
             const container=document.createElement("div");
             const btn1=document.createElement("button");
             const btn2=document.createElement("button");
@@ -137,25 +81,15 @@
             para3.textContent="";
             para4.textContent="";
 
-            const playGame= function(playerSelection){
-                
+            /*Call playRound function*/
+            const playGame= function(playerSelection){            
                 computerSelection=getComputerChoice();  
-                //const result=playRound(playerSelection, computerSelection);       
                 playRound(playerSelection, computerSelection);
-               
-
-                //para.textContent=playerScore+ ";"+computerScore+";"+result;
-                
-                //console.log(playerSelection+";"+computerSelection+";"+result);
-
             };
 
             /*Add event listener to the buttons to call playRound function*/
-            
             btn1.addEventListener("click", ()=>{
-                playGame("rock");
-                
-               
+                playGame("rock"); 
             });
             btn2.addEventListener("click", ()=>{
                 playGame("paper");
@@ -166,27 +100,23 @@
 
             });
 
+            /*Display the winner*/
             let playerScore=0;
             let computerScore=0;
             const score=function(result){
                 let winner;
-                //const result=playRound(playerSelection, computerSelection);
                 if(result==="It's a tie"){
                     playerScore;
                     computerScore;
-                    //return result;
                 }
                 else if(result==="You lost! Computer win"){
                     computerScore++;
-                    //return result;
                 }
                 else if(result==="You win! Computer lost"){
                     playerScore++;
-                    //return result;
                 }
    
                 if(playerScore==5 || computerScore==5){
-                    
                     if (playerScore>computerScore){
                         winner= "Player win the game";
                     }
@@ -197,19 +127,15 @@
                 if(winner){
                     btn1.disabled=true;
                     btn2.disabled=true;
-                    btn3.disabled=true;
-                    
+                    btn3.disabled=true;                   
                 }
                  
                 para1.textContent="Playerscore: "+playerScore;
                 para2.textContent="Computerscore: "+computerScore;
                 para3.textContent= result;
                 para4.textContent= winner;
-         
             };
            
-
-      
         </script>
     </body>
 
