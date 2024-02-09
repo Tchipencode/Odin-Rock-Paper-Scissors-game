@@ -62,7 +62,8 @@
                     result= "player hand is not correct";
                 }
                 score(result);
-                return result;
+                
+                //return result;
             };
          
             //computerSelection=getComputerChoice();
@@ -120,12 +121,21 @@
             body.appendChild(container);
 
             const divResult=document.createElement("div");
-            const para=document.createElement("p");
+            const para1=document.createElement("p");
+            const para2=document.createElement("p");
+            const para3=document.createElement("p");
+            const para4=document.createElement("p");
          
             body.appendChild(divResult);
-            divResult.appendChild(para);
+            divResult.appendChild(para1);
+            divResult.appendChild(para2);
+            divResult.appendChild(para3);
+            divResult.appendChild(para4);
 
-            para.textContent="";
+            para1.textContent="";
+            para2.textContent="";
+            para3.textContent="";
+            para4.textContent="";
 
             const playGame= function(playerSelection){
                 
@@ -175,17 +185,27 @@
                     //return result;
                 }
    
-                if(playerScore>=5 || computerScore>=5){
+                if(playerScore==5 || computerScore==5){
                     
                     if (playerScore>computerScore){
                         winner= "Player win the game";
                     }
                     else{
                         winner="Computer win the game";
-                    }  
+                    }           
+                }
+                if(winner){
+                    btn1.disabled=true;
+                    btn2.disabled=true;
+                    btn3.disabled=true;
+                    
                 }
                  
-                para.textContent= playerScore+ ";"+computerScore+";"+result;          
+                para1.textContent="Playerscore: "+playerScore;
+                para2.textContent="Computerscore: "+computerScore;
+                para3.textContent= result;
+                para4.textContent= winner;
+         
             };
            
 
